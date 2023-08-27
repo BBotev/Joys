@@ -1,0 +1,172 @@
+.homePage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.secondBack {
+  position: absolute;
+  width: 100%;
+  height: 175px;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  object-fit: cover;
+}
+
+.procedures {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.procedures img {
+  width: 100%;
+  transition: 0.5s all ease-in-out;
+}
+
+.procedures:hover img {
+  transform: scale(1.2);
+  filter: brightness(50%);
+}
+
+.proceduresText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
+  color: white;
+}
+
+.card {
+  margin-left: 10%;
+}
+
+@media (min-width:992px) {
+  .card {
+    margin-left: 5%;
+  }
+}
+
+@media (min-width:992px) {
+  .cardText {
+    padding-left: 22%;
+  }
+}
+
+@media (min-width:992px) {
+  .cardMan {
+    padding-top: 330px;
+  }
+}
+
+@media (min-width:992px) {
+  .cardWoman {
+    padding-top: 450px;
+  }
+}
+
+@media (min-width:992px) {
+  .workTime {
+    margin-right: 20%;
+  }
+}
+
+@media (min-width:992px) {
+  .contacts {
+    margin-right: 20%;
+  }
+}
+
+.offer {
+  font-family: cursive;
+  display: inline-block;
+  width: 100%;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  padding: 1em;
+  line-height: 1.5em;
+  background: white;
+  border: solid 5px green;
+}
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AddButton {
+  padding: 3px;
+  border: 2px solid black;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  background-color: grey;
+}
+
+.AddButton:hover {
+  color: black;
+  box-shadow: inset 200px 0 0 0 white;
+  ;
+  transition: color .4s ease-in-out, box-shadow .4s ease-in-out;
+}
+
+.labels:focus+label {
+  background-color: black;
+}
+
+.loginForm {
+  background-color: #15172b;
+  background-size: cover;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (min-width:992px) {
+  .loginForm {
+    margin-right: 21%;
+  }
+}
+
+.signupForm {
+  background-color: #15172b;
+  background-size: cover;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (min-width:992px) {
+  .signupForm {
+    margin-right: 21%;
+  }
+}
+
+.text {
+  text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
+  color: white;
+}
+
+.quantShopping {
+  position: absolute;
+  font-size: 15px;
+  font-weight:bold;
+  background: white;
+  color: red;
+  vertical-align: bottom;
+  margin-left: -10px;
+  margin-top: 25px;
+  border-radius: 50%;
+  padding: 0 7px;
+}
