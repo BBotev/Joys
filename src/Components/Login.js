@@ -23,7 +23,7 @@ function Login() {
         } else if (form.checkValidity() === true) {
             e.preventDefault();
             try {
-                await axios.post("http://localhost:8000/login", {
+                await axios.post("https://joys-backend.netlify.app/api/login", {
                     account, password
                 })
                         .then(res => {
