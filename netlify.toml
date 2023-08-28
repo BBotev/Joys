@@ -5,5 +5,5 @@
   force = true
   from = "/api/*"
   status = 200
-  to = "/.netlify/functions/api/:splat/index.html"
+  to = "/.netlify/functions/api/:splat"
 
