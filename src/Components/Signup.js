@@ -142,9 +142,10 @@ function Signup() {
              
              <br />
              
-              <div>
+              <div>               
+              <span style={{color:'white',marginRight:'20px',fontSize:'20px'}}>Пол:</span>
               <Form.Check name="grouped" required inline label="Мъж" type='radio' style={{color:'white'}} onChange={() => { setGender("man") }}/>
-              <Form.Check name="grouped" required inline label="Жена" type='radio' style={{color:'white'}} onChange={() => { setGender("woman") }}/>
+              <Form.Check name="grouped" required inline label="Жена" type='radio' style={{color:'white'}} onChange={() => { setGender("woman") }}/>             
               </div>
 
             <Button type="submit" style={{ marginTop: '25px' }}>Изпращане</Button>
