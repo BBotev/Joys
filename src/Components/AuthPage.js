@@ -9,6 +9,7 @@ function AuthPage() {
   const name = localStorage.getItem('name');
   const check = localStorage.getItem('order');
   const id = localStorage.getItem('id');
+  const gender = localStorage.getItem('gender');
   
   useEffect(()=>{
     if(check && JSON.parse(localStorage.getItem('order')).length>0){
@@ -39,7 +40,7 @@ return (
         <NavTop />
         <img src={require('../Images/navPic.jpg')} alt='pic' className='secondBack' />
         <h1 style={{ textAlign: 'center', textShadow: '1px 1px 2px black, 0 0 25px black, 0 0 5px black', color: 'white' }}>
-          Здравей {name} и добре дошъл при нас!
+          Здравей {name} и добре {gender==='man'?'дошъл':'дошла'} при нас!
         </h1>
 
       </Col>

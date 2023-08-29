@@ -25,6 +25,10 @@ const newSchema=new mongoose.Schema({
     email:{
         type:String,
         require:true
+    },
+    gender:{
+        type:String,
+        require:true
     }
 })
 

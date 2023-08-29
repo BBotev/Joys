@@ -31,7 +31,8 @@ function Login() {
                             history("/authpage");
                             localStorage.setItem('account',account);
                             localStorage.setItem('name',res.data.name);
-                            localStorage.setItem('id', res.data.id);                     
+                            localStorage.setItem('id', res.data.id);
+                            localStorage.setItem('gender', res.data.gender);                     
                         }
                         else if (res.data === "notexist") {
                             alert("Потребителя не е регистриран")

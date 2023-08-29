@@ -17,6 +17,7 @@ function Signup() {
   const [firstName, setFirstName] = useState("");
   const [secondName, setSecondName] = useState("");
   const [phone,setPhone] = useState("");
+  const [gender,setGender] = useState("");
   const [validated, setValidated] = useState(false);
 
   async function handleSubmit(e) {
@@ -28,7 +29,7 @@ function Signup() {
       e.preventDefault();
       try {
         await axios.post("https://joys-backend.netlify.app/api/signup", {
-          firstName, secondName, phone, account, password, email
+          firstName, secondName, phone, account, password, email, gender
         })
           .then(res => {
             if (res.data === "exist") {
@@ -136,9 +137,16 @@ function Signup() {
               </FloatingLabel>
             </Form.Group>           
            
-           
             </Col>
-            </Row>    
+            </Row>
+             
+             <br />
+             
+              <div>
+              <Form.Check name="grouped" required inline label="Мъж" type='radio' style={{color:'white'}} onChange={() => { setGender("man") }}/>
+              <Form.Check name="grouped" required inline label="Жена" type='radio' style={{color:'white'}} onChange={() => { setGender("woman") }}/>
+              </div>
+
             <Button type="submit" style={{ marginTop: '25px' }}>Изпращане</Button>
             
           </Form>
