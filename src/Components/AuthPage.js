@@ -21,7 +21,7 @@ function AuthPage() {
    
   try {
     if(oneTime){
-      axios.post("http://localhost:8000/getorders",{id:id})
+      axios.post("https://joys-backend.netlify.app/api/getorders",{id:id})
       .then(res=>{
       setAllOrders(res.data);
       setOneTime(false);

@@ -33,7 +33,7 @@ function deleteOrders(text) {
    if(checkUser && window.confirm("Потвърждавате ли поръчката?")){
   try {
       const orderText = Array.from(orders,(x)=>x.text)
-      axios.post("http://localhost:8000/orders", {id,orderText,sum})
+      axios.post("https://joys-backend.netlify.app/api/orders", {id,orderText,sum})
   }
   catch (e) {
       console.log(e)

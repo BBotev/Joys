@@ -27,7 +27,7 @@ function Signup() {
     } else if (form.checkValidity() === true) {
       e.preventDefault();
       try {
-        await axios.post("http://localhost:8000/signup", {
+        await axios.post("https://joys-backend.netlify.app/api/signup", {
           firstName, secondName, phone, account, password, email
         })
           .then(res => {
