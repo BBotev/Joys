@@ -19,6 +19,7 @@ function Signup() {
   const [phone,setPhone] = useState("");
   const [gender,setGender] = useState("");
   const [validated, setValidated] = useState(false);
+  const admin = false;
 
   async function handleSubmit(e) {
     const form = e.currentTarget;
@@ -29,7 +30,7 @@ function Signup() {
       e.preventDefault();
       try {
         await axios.post("https://joys-backend.netlify.app/api/signup", {
-          firstName, secondName, phone, account, password, email, gender
+          firstName, secondName, phone, account, password, email, gender,admin
         })
           .then(res => {
             if (res.data === "exist") {

@@ -34,7 +34,7 @@ app.post("/login",async(req,res)=>{
 
 app.post("/signup",async(req,res)=>{
    
-    const {firstName,secondName,phone,account,password,email,gender}=req.body
+    const {firstName,secondName,phone,account,password,email,gender,admin}=req.body
 
     const data={
         firstName:firstName,
@@ -43,7 +43,8 @@ app.post("/signup",async(req,res)=>{
         account:account,
         password:password,
         email:email,
-        gender:gender
+        gender:gender,
+        admin:admin
     }
 
     try{

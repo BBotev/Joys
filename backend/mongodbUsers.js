@@ -29,6 +29,10 @@ const newSchema=new mongoose.Schema({
     gender:{
         type:String,
         require:true
+    },
+    admin:{
+        type:Boolean,
+        require:true
     }
 })
 
