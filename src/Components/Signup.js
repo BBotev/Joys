@@ -113,7 +113,7 @@ function Signup() {
             <Form.Group controlId="validationCustom01">
               
               <FloatingLabel label="Имейл">
-                <Form.Control type="email" placeholder="Имейл" required onChange={(e) => { setEmail(e.target.value) }} />
+                <Form.Control type="email" placeholder="Имейл" required onChange={(e) => { setEmail(e.target.value) }} id='email'/>
                 <Form.Control.Feedback type="invalid">Полето е задължително!</Form.Control.Feedback>
               </FloatingLabel>
             
@@ -123,7 +123,7 @@ function Signup() {
 
           <Form.Group controlId="validationCustom02">
               <FloatingLabel label="Потребителско име">
-                <Form.Control required type="text" placeholder="Потребителско име" onChange={(e) => { setAccount(e.target.value) }} />
+                <Form.Control required type="text" placeholder="Потребителско име" onChange={(e) => { setAccount(e.target.value) }} id='username'/>
                 <Form.Control.Feedback type="invalid">Полето е задължително!</Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
@@ -132,7 +132,7 @@ function Signup() {
 
             <Form.Group controlId="validationCustom03">
               <FloatingLabel label="Парола">
-                <Form.Control required type="password" placeholder="Парола" onChange={(e) => { setPassword(e.target.value) }} />
+                <Form.Control required type="password" placeholder="Парола" onChange={(e) => { setPassword(e.target.value)}} id='password'/>
                 <Form.Control.Feedback type="invalid">Полето е задължително!</Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>           
