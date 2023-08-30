@@ -8,7 +8,7 @@ function Admin(){
 
     const[allOrders,setAllOrders]= useState([]);
     const[oneTime,setOneTime]=useState(true);
-console.log(allOrders)
+
     try {
         if(oneTime){
           axios.get("https://joys-backend.netlify.app/api/admin")
