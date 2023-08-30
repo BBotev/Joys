@@ -17,7 +17,7 @@ import Manicure, {Nails, Gel, Uv, Repair, Decoration, HandTherapie} from './Comp
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import AuthPage from './Components/AuthPage';
-import Admin from './Components/Admin';
+import Admin from './Components/admin';
 
 function App() {
 
