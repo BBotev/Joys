@@ -32,7 +32,8 @@ function Login() {
                             localStorage.setItem('account',account);
                             localStorage.setItem('name',res.data.name);
                             localStorage.setItem('id', res.data.id);
-                            localStorage.setItem('gender', res.data.gender);                     
+                            localStorage.setItem('gender', res.data.gender);
+                            localStorage.setItem('admin', res.data.admin);                     
                         }
                         else if (res.data === "notexist") {
                             alert("Потребителя не е регистриран")

@@ -21,7 +21,7 @@ app.post("/login",async(req,res)=>{
     try{
         const check = await joysUsers.findOne({account:account,password:password})
         if(check){
-            res.json({status: 'exist', name: check.firstName, id:check._id, gender:check.gender})
+            res.json({status: 'exist', name: check.firstName, id:check._id, gender:check.gender, admin:check.admin})
         }
         else{
             res.json("notexist")
