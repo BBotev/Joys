@@ -19,7 +19,7 @@ function AuthPage() {
   
   const[allOrders,setAllOrders]= useState([]);
   const[oneTime,setOneTime]=useState(true);
-   
+
   try {
     if(oneTime){
       axios.post("https://joys-backend.netlify.app/api/getorders",{id:id})
@@ -50,16 +50,19 @@ return (
       </Col>
 
       <Col lg={10} xs={12} style={{ marginTop: '3%' }}>
+        {!oneTime?<div>
         <h1 style={{textAlign:'center'}}>{allOrders.length>0?'Вашите поръчки са:':'Все още нямате направени поръчки'}</h1>
         <ul style={{ fontSize: '20px',listStyle:'none',marginTop:'20px',marginRight:'20px'}}>
           {allOrders.map((element)=>
           <div key={Math.random()}>
           <li><h3>Вид процедура:</h3>{element.products+" "}</li>  
           <li><h3>Дата на заявяване:</h3>{element.date}</li> 
-          <li><h3>Обща сума:</h3>{element.totalSum}</li>           
+          <li><h3>Обща сума:</h3>{element.totalSum} лв.</li>           
           <hr />       
           </div>       
           )}</ul>
+          </div>:<h1 style={{textAlign:'center'}}>Зареждане...</h1>
+          }
       </Col>
 
     </Row>

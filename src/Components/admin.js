@@ -40,7 +40,7 @@ function Admin(){
         </Col>
   
         <Col lg={10} xs={12} style={{ marginTop: '3%' }}>
-        <h1 style={{textAlign:'center'}}>Направените поръчки са:</h1>
+        {!oneTime?<div><h1 style={{textAlign:'center'}}>Направените поръчки са:</h1>
         <ul style={{ fontSize: '20px',listStyle:'none',marginTop:'20px',marginRight:'20px'}}>
           {allOrders.map((element)=>
           <div key={Math.random()}>
@@ -52,7 +52,8 @@ function Admin(){
           <hr />       
           </div>       
           )}</ul>
-          
+          </div>:<h1 style={{textAlign:'center'}}>Зареждане...</h1>
+          } 
         </Col>
   
       </Row>
