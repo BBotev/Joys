@@ -56,7 +56,7 @@ return (
           <div key={Math.random()}>
           <li><h3>Вид процедура:</h3>{element.products+" "}</li>  
           <li><h3>Дата на заявяване:</h3>{element.date}</li> 
-          <li><h3>Обща сума:</h3>{element.totalSum} лв.</li>           
+          <li><h3>Обща сума:</h3>{element.totalSum}</li>           
           <hr />       
           </div>       
           )}</ul>

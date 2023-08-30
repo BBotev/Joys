@@ -44,9 +44,9 @@ console.log(allOrders)
           {allOrders.map((element)=>
           <div key={Math.random()}>
           <li><h3>Име на клиента:</h3>{element.name}</li>  
-          <li><h3>Телефон на клиента:</h3>{element.phone} лв.</li> 
-          <li><h3>Поща на клиента:</h3>{element.email} лв.</li> 
-          <li><h3>Поръчка на клиента:</h3>{element.products} лв.</li> 
+          <li><h3>Телефон на клиента:</h3>{element.phone}</li> 
+          <li><h3>Поща на клиента:</h3>{element.email}</li> 
+          <li><h3>Поръчка на клиента:</h3>{element.products}</li> 
           <li><h3>Дата на заявяване:</h3>{element.date}</li>                    
           <hr />       
           </div>       
