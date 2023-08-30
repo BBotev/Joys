@@ -104,6 +104,17 @@ const currentUser = req.body
 
 })
 
+app.get("/admin",async (req,res)=>{
+    const allOrders = await joysOrders.find();
+    try {      
+        if(allOrders){    
+         res.json(allOrders)        
+    }
+ } catch (error) {
+  res.json("notexist")
+   } 
+})
+
 app.listen(8000,()=>{
     console.log("server connected");
 })

@@ -17,6 +17,7 @@ import Manicure, {Nails, Gel, Uv, Repair, Decoration, HandTherapie} from './Comp
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import AuthPage from './Components/AuthPage';
+import Admin from './Components/admin';
 
 function App() {
 
@@ -75,6 +76,7 @@ function App() {
         <Route path='/Login' element={<Login />} />
         <Route path='/Signup' element={<Signup />} />
         <Route path='/AuthPage' element={<AuthPage />} />
+        <Route path='/Admin' element={<Admin />} />
       
       </Routes>
    

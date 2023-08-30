@@ -7,7 +7,8 @@ import ShoppingCard from './ShoppingCard';
 function NavTop() {
 
   const acc = localStorage.getItem('account');
-  
+  const admin = JSON.parse(localStorage.getItem('admin'));
+
   const remove = () => {
     localStorage.clear(); window.location.reload()
   } 
@@ -42,7 +43,7 @@ function NavTop() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
-                  <Dropdown.Item href={acc != null ? "/authpage" : "/login"} style={{ backgroundColor: 'rgba(0, 0, 0, 0)', color: 'white' }} className='text'>{acc != null ? acc : "Вписване"}</Dropdown.Item>
+                  <Dropdown.Item href={acc != null ? (admin?"/admin":"/authpage"):"/login"} style={{ backgroundColor: 'rgba(0, 0, 0, 0)', color: 'white' }} className='text'>{acc != null ? acc : "Вписване"}</Dropdown.Item>
                   <Dropdown.Item href='/Procedures' onClick={remove} style={{ display: acc != null ? "block" : "none", backgroundColor: 'rgba(0, 0, 0, 0)', color: 'white' }} className='text'>Отписване</Dropdown.Item>
                   <Dropdown.Item href='/Signup' style={{ display: acc != null ? "none" : "block", backgroundColor: 'rgba(0, 0, 0, 0)', color: 'white' }} className='text'>Регистрация</Dropdown.Item>
                 </Dropdown.Menu>

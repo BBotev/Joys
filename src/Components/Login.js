@@ -28,7 +28,7 @@ function Login() {
                 })
                         .then(res => {
                         if (res.data.status === "exist") {
-                            history("/authpage");
+                            history(res.data.admin?"/admin":"/authpage");
                             localStorage.setItem('account',account);
                             localStorage.setItem('name',res.data.name);
                             localStorage.setItem('id', res.data.id);
