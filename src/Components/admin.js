@@ -3,11 +3,13 @@ import NavTop from "./NavTop";
 import NavLeft from "./NavLeft";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
+import Accordion from 'react-bootstrap/Accordion';
 
 function Admin(){
 
     const[allOrders,setAllOrders]= useState([]);
     const[oneTime,setOneTime]=useState(true);
+    const name = localStorage.getItem('name');
 
     try {
         if(oneTime){
@@ -30,7 +32,7 @@ function Admin(){
           <NavTop />
           <img src={require('../Images/navPic.jpg')} alt='pic' className='secondBack' />
           <h1 style={{ textAlign: 'center', textShadow: '1px 1px 2px black, 0 0 25px black, 0 0 5px black', color: 'white' }}>
-            Здравей администраторЮ !!! Печен си ти !!!
+            Здравей {name} ти си администратор тук!
           </h1>
   
         </Col>
@@ -39,19 +41,27 @@ function Admin(){
           <NavLeft />
         </Col>
   
-        <Col lg={10} xs={12} style={{ marginTop: '3%' }}>
-        {!oneTime?<div><h1 style={{textAlign:'center'}}>Направените поръчки са:</h1>
+        <Col lg={10} xs={12} style={{ marginTop: '1%' }}>    
+        {
+        !oneTime?<div><h1 style={{textAlign:'center'}}>Направените поръчки са:</h1>   
         <ul style={{ fontSize: '20px',listStyle:'none',marginTop:'20px',marginRight:'20px'}}>
+         <Row>
           {allOrders.map((element)=>
-          <div key={Math.random()}>
+          <Col lg={4} md={6} sx={12} key={Math.random()}>
           <li><h3>Име на клиента:</h3>{element.name}</li>  
           <li><h3>Телефон на клиента:</h3>{element.phone}</li> 
           <li><h3>Поща на клиента:</h3>{element.email}</li> 
-          <li><h3>Поръчка на клиента:</h3>{element.products}</li> 
+          <Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="1">
+          <li><Accordion.Header style={{marginLeft:'-20px'}}><h4>Поръчка на клиента:</h4></Accordion.Header><Accordion.Body>{element.products}</Accordion.Body></li> 
+          </Accordion.Item>
+          </Accordion>
           <li><h3>Дата на заявяване:</h3>{element.date}</li>                    
-          <hr />       
-          </div>       
-          )}</ul>
+          <hr style={{height:'3px', background:'red'}}/>
+          <br />       
+          </Col>)}             
+          </Row>
+         </ul>        
           </div>:<h1 style={{textAlign:'center'}}>Зареждане...</h1>
           } 
         </Col>

@@ -3,6 +3,7 @@ import NavTop from "./NavTop";
 import NavLeft from "./NavLeft";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
+import Accordion from 'react-bootstrap/Accordion';
 
 function AuthPage() {
 
@@ -49,18 +50,28 @@ return (
         <NavLeft />
       </Col>
 
-      <Col lg={10} xs={12} style={{ marginTop: '3%' }}>
-        {!oneTime?<div>
+      <Col lg={10} xs={12} style={{ marginTop: '1%' }}>
+        {
+        !oneTime?<div>
         <h1 style={{textAlign:'center'}}>{allOrders.length>0?'Вашите поръчки са:':'Все още нямате направени поръчки'}</h1>
         <ul style={{ fontSize: '20px',listStyle:'none',marginTop:'20px',marginRight:'20px'}}>
+          <Row>
           {allOrders.map((element)=>
-          <div key={Math.random()}>
-          <li><h3>Вид процедура:</h3>{element.products+" "}</li>  
+           <Col lg={4} md={6} sx={12} key={Math.random()}>
+          <Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="1">
+          <li>
+          <Accordion.Header style={{marginLeft:'-20px'}}><h3>Вид процедура:</h3></Accordion.Header>
+          <Accordion.Body>{element.products+" "}</Accordion.Body>
+          </li> 
+          </Accordion.Item>
+          </Accordion> 
           <li><h3>Дата на заявяване:</h3>{element.date}</li> 
           <li><h3>Обща сума:</h3>{element.totalSum} лв.</li>           
-          <hr />       
-          </div>       
-          )}</ul>
+          <hr style={{height:'3px', background:'red'}}/>       
+          </Col>)}
+          </Row>
+          </ul>
           </div>:<h1 style={{textAlign:'center'}}>Зареждане...</h1>
           }
       </Col>
