@@ -61,14 +61,20 @@ return (
           <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="1">
           <li>
-          <Accordion.Header style={{marginLeft:'-20px'}}><h3>Вид процедура:</h3></Accordion.Header>
+          <Accordion.Header style={{marginLeft:'-20px'}}><h3>Заявени процедури:</h3></Accordion.Header>
           <Accordion.Body>{element.products+" "}</Accordion.Body>
           </li> 
           </Accordion.Item>
           </Accordion> 
           <li><h3>Дата на заявяване:</h3>{element.date}</li> 
-          <li><h3>Обща сума:</h3>{element.totalSum} лв.</li>           
-          <hr style={{height:'3px', background:'red'}}/>       
+          <li><h3>Обща сума:</h3>{element.totalSum} лв.</li>
+          <li>
+          <h3>Статус на поръчката:</h3>
+          <div style={{background:element.status==="1"?"orange":"green", width:'110px',borderRadius:'5px',paddingLeft:'6px'}}>
+            {element.status==="1"?"Изпратена":"Обработена"}
+            </div>
+          </li>           
+          <hr style={{height:'3px', background:'black'}}/>       
           </Col>)}
           </Row>
           </ul>
