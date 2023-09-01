@@ -4,16 +4,13 @@ import NavLeft from "./NavLeft";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import Accordion from 'react-bootstrap/Accordion';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 function Admin(){
 
     const[allOrders,setAllOrders]= useState([]);
-    const[status,setStatus]=useState("");
-    console.log(status)
     const[oneTime,setOneTime]=useState(true);   
     const name = localStorage.getItem('name');
-
+  
     try {
         if(oneTime){
           axios.get("https://joys-backend.netlify.app/api/admin")
@@ -24,6 +21,18 @@ function Admin(){
           }}
         catch (error) {
           console.log(error)
+        }
+
+        function updateStatus(text){
+          const selectValue = document.getElementById(text).value;
+          const orderId = text;
+          try {
+            axios.post("https://joys-backend.netlify.app/api/status",{
+              selectValue,orderId
+            })
+          } catch (error) {
+            console.log(error)
+          }       
         }
 
     return(
@@ -61,24 +70,10 @@ function Admin(){
           <li><h3>Дата на заявяване:</h3>{element.date}</li>
           <li>
             <h3>Статус на поръчката:</h3>             
-                <Row> 
-             
-             <Col>
-            <Dropdown>
-      <Dropdown.Toggle style={{background:element.status==="1"?"orange":"green"}} id="dropdown-basic">
-      {element.status==="1"?"Изпратена":"Обработена"}
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu>
-        <Dropdown.Item style={{width:'60px'}} onClick={()=>{setStatus("2");element.status=status}}>Обработена</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>   
-    </Col>
-    <Col>
-    <button style={{borderRadius:'5px',border:'2px solid black',width:'75px',fontSize:"18px"}}>Обнови</button>
-    </Col>
-    
-    </Row>    
+           <select  id={element._id} onChange={()=>updateStatus(element._id)} defaultValue={element.status}>
+            <option value={1}>Изпратена</option>
+            <option value={2}>Обработена</option>
+           </select>  
           </li>                  
           <hr style={{height:'3px', background:'black'}}/>
           <br />       
