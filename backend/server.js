@@ -115,6 +115,26 @@ app.get("/admin",async (req,res)=>{
    } 
 })
 
+app.put("/status",async (req,res)=>{
+    const data = req.body;
+    await joysOrders.updateOne({ _id: data.orderId },{$set:{status:data.selectValue}})
+    try {
+        res.json("exist")
+    } catch (error) {
+        res.json("notexist")
+    }
+})
+
+app.post("/delete",async (req,res)=>{
+    const data = req.body;
+    await joysOrders.deleteOne({_id:data.selectedOrder})
+    try {
+        res.json("exist")
+    } catch (error) {
+         res.json("notexist")
+    }
+})
+
 app.listen(8000,()=>{
     console.log("server connected");
 })

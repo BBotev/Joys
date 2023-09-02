@@ -70,7 +70,7 @@ return (
           <li><h3>Обща сума:</h3>{element.totalSum} лв.</li>
           <li>
           <h3>Статус на поръчката:</h3>
-          <div style={{background:element.status==="1"?"orange":"green", width:'110px',borderRadius:'5px',paddingLeft:'6px'}}>
+          <div style={{background:element.status==="1"?"orange":"green", width:'125px',borderRadius:'5px',paddingLeft:'6px'}}>
             {element.status==="1"?"Изпратена":"Обработена"}
             </div>
           </li>           

@@ -28,12 +28,12 @@ function deleteOrders(text) {
   const [checkSend,setCheckSend]=useState(true)
   const checkUser = localStorage.getItem('account')
 
-   function finalOrder(){
+  async function finalOrder(){
     
    if(checkUser && window.confirm("Потвърждавате ли поръчката?")){
   try {
       const orderText = Array.from(orders,(x)=>x.text)
-      axios.post("https://joys-backend.netlify.app/api/orders", {id,orderText,sum})
+    await  axios.post("https://joys-backend.netlify.app/api/orders", {id,orderText,sum})
   }
   catch (e) {
       console.log(e)

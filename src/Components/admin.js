@@ -23,16 +23,33 @@ function Admin(){
           console.log(error)
         }
 
-        function updateStatus(text){
-          const selectValue = document.getElementById(text).value;
+       async function updateStatus(text){
+          
+        const selectValue = document.getElementById(text).value;
           const orderId = text;
           try {
-            axios.post("https://joys-backend.netlify.app/api/status",{
+           await axios.put("https://joys-backend.netlify.app/api/status",{
               selectValue,orderId
             })
           } catch (error) {
             console.log(error)
-          }       
+          }     
+        selectValue==="1"?document.getElementById(text).style.background="orange":document.getElementById(text).style.background="green"  
+        
+        }
+
+        async function deleteOrder(text){
+          
+          if(window.confirm("Потвърждавате ли изтриването?")){
+            const selectedOrder = text;
+            console.log(selectedOrder)
+            try {
+             await axios.post('https://joys-backend.netlify.app/api/delete',{selectedOrder})
+             .then(()=>{window.location.reload()})
+            } catch (error) {
+              console.log(error)
+            }
+          }
         }
 
     return(
@@ -69,11 +86,19 @@ function Admin(){
           </Accordion>
           <li><h3>Дата на заявяване:</h3>{element.date}</li>
           <li>
-            <h3>Статус на поръчката:</h3>             
-           <select  id={element._id} onChange={()=>updateStatus(element._id)} defaultValue={element.status}>
+            <h3>Статус на поръчката:</h3> 
+            <Row> 
+              <Col>         
+           <select  id={element._id} onChange={()=>updateStatus(element._id)} defaultValue={element.status} 
+           style={{background:element.status==="1" ? "orange" : "green", borderRadius:'5px'}}>
             <option value={1}>Изпратена</option>
             <option value={2}>Обработена</option>
            </select>  
+             </Col>
+             <Col>
+           <button style={{background:'red',borderRadius:'5px',height:'32px', marginLeft:'50%'}} onClick={()=>deleteOrder(element._id)}>Изтрии</button>
+           </Col>
+           </Row> 
           </li>                  
           <hr style={{height:'3px', background:'black'}}/>
           <br />       
