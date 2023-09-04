@@ -75,7 +75,8 @@ app.post("/orders",async(req,res)=>{
         email:check.email,
         phone:check.phone,
         products:orderText,
-        totalSum:sum
+        totalSum:sum,
+        day:""
     }
  
     try {
@@ -115,9 +116,9 @@ app.get("/admin",async (req,res)=>{
    } 
 })
 
-app.put("/status",async (req,res)=>{
+app.put("/updateorder",async (req,res)=>{
     const data = req.body;
-    await joysOrders.updateOne({ _id: data.orderId },{$set:{status:data.selectValue}})
+    await joysOrders.updateOne({ _id: data.orderId },{$set:{status:data.selectValue,day:data.day}})
     try {
         res.json("exist")
     } catch (error) {

@@ -71,9 +71,18 @@ return (
           <li>
           <h3>Статус на поръчката:</h3>
           <div style={{background:element.status==="1"?"orange":"green", width:'125px',borderRadius:'5px',paddingLeft:'6px'}}>
-            {element.status==="1"?"Изпратена":"Обработена"}
+            {element.status==="1"?"Изпратена":"Завършена"}
             </div>
-          </li>           
+          </li> 
+          <li>
+            <h3>Час и дата за поръчката:</h3>
+            <h4>
+              <div>
+             <b>Дата:</b>{element.status==="1"?" . . .":element.day.slice(0,10)} 
+             <b>Час:</b>{element.status==="1"?" . . .":element.day.slice(-5)}
+           </div>
+            </h4>
+            </li>          
           <hr style={{height:'3px', background:'black'}}/>       
           </Col>)}
           </Row>

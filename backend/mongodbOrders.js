@@ -33,6 +33,10 @@ const newSchema=new mongoose.Schema({
        totalSum:{
        type:String,
        require:true
+       },
+       day:{
+        type:String,
+        require:true
        }
 })
 const joysOrders = mongoose.model("joysOrders",newSchema);

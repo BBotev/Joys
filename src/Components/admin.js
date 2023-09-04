@@ -23,28 +23,29 @@ function Admin(){
           console.log(error)
         }
 
-       async function updateStatus(text){
+       async function updateOrder(text){
           
         const selectValue = document.getElementById(text).value;
-          const orderId = text;
+        const orderId = text;
+        const day = document.getElementById(text+"day")?document.getElementById(text+"day").value:"";
           try {
-           await axios.put("https://joys-backend.netlify.app/api/status",{
-              selectValue,orderId
+           await axios.put("https://joys-backend.netlify.app/api/updateorder",{
+              selectValue,orderId,day
             })
+            .then(()=>{window.location.reload()})
           } catch (error) {
             console.log(error)
           }     
-        selectValue==="1"?document.getElementById(text).style.background="orange":document.getElementById(text).style.background="green"  
-        
+        selectValue==="1"?document.getElementById(text).style.background="#ffb732":document.getElementById(text).style.background="#66FF99" 
+          
         }
 
         async function deleteOrder(text){
           
           if(window.confirm("Потвърждавате ли изтриването?")){
             const selectedOrder = text;
-            console.log(selectedOrder)
             try {
-             await axios.post('https://joys-backend.netlify.app/api/delete',{selectedOrder})
+             await axios.post("https://joys-backend.netlify.app/api/delete",{selectedOrder})
              .then(()=>{window.location.reload()})
             } catch (error) {
               console.log(error)
@@ -76,27 +77,45 @@ function Admin(){
          <Row>
           {allOrders.map((element)=>
           <Col lg={4} md={6} sx={12} key={Math.random()}>
-          <li><h3>Име на клиента:</h3>{element.name}</li>  
-          <li><h3>Телефон на клиента:</h3>{element.phone}</li> 
-          <li><h3>Поща на клиента:</h3>{element.email}</li>          
+          <li><h4>Име на клиента:</h4>{element.name}</li>  
+          <li><h4>Телефон на клиента:</h4>{element.phone}</li> 
+          <li><h4>Поща на клиента:</h4>{element.email}</li>          
+          <li><h4>Дата на заявяване:</h4>{element.date}</li>
           <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="1">
           <li><Accordion.Header style={{marginLeft:'-20px'}}><h4>Поръчка на клиента:</h4></Accordion.Header><Accordion.Body>{element.products}</Accordion.Body></li> 
           </Accordion.Item>
-          </Accordion>
-          <li><h3>Дата на заявяване:</h3>{element.date}</li>
+          </Accordion>                
           <li>
-            <h3>Статус на поръчката:</h3> 
+          <Row>
+            <Col>         
+            <h4>Час:</h4>
+            </Col> 
+            <Col>
+            <div>{
+            element.day?element.day:<input id={element._id+"day"} onChange={()=>document.getElementById(element._id).disabled=false} type="datetime-local" style={{fontSize:'17px'}}/>
+          }</div>
+          </Col>
+            </Row>
+          </li>           
+          <li>
+            <h4>Статус на поръчката:</h4> 
             <Row> 
-              <Col>         
-           <select  id={element._id} onChange={()=>updateStatus(element._id)} defaultValue={element.status} 
-           style={{background:element.status==="1" ? "orange" : "green", borderRadius:'5px'}}>
+              <Col lg={4} md={4} xs={4}>         
+           <select  id={element._id} onChange={()=>updateOrder(element._id)} defaultValue={element.status} 
+           style={{background:element.status==="1" ? "#ffb732" : "#66FF99", borderRadius:'5px',fontSize:'17px'}} disabled>
             <option value={1}>Изпратена</option>
-            <option value={2}>Обработена</option>
+            <option value={2}>Завършена</option>
            </select>  
              </Col>
-             <Col>
-           <button style={{background:'red',borderRadius:'5px',height:'32px', marginLeft:'50%'}} onClick={()=>deleteOrder(element._id)}>Изтрии</button>
+             <Col lg={4} md={4} xs={4}>
+             <button onClick={()=>document.getElementById(element._id).disabled=false} 
+             style={{background:'#6699FF',borderRadius:'5px',height:'30px',display:element.day?"block":"none",marginLeft:'17px',fontSize:'17px'}}>
+              Промени
+              </button>
+             </Col>
+             <Col lg={4} md={4} xs={4}>
+           <button style={{background:'#ff7e5f',borderRadius:'5px',height:'30px',fontSize:'17px'}} onClick={()=>deleteOrder(element._id)}>Изтрии</button>
            </Col>
            </Row> 
           </li>                  
