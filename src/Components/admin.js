@@ -88,12 +88,13 @@ function Admin(){
           </Accordion>                
           <li>
           <Row>
-            <Col>         
+            <Col lg={2} md={2} xs={2}>         
             <h4>Час:</h4>
             </Col> 
-            <Col>
+            <Col lg={10} md={10} xs={10}>
             <div>{
-            element.day?element.day:<input id={element._id+"day"} onChange={()=>document.getElementById(element._id).disabled=false} type="datetime-local" style={{fontSize:'17px'}}/>
+            element.day?`Дата: ${element.day.slice(0,10)} Час:${element.day.slice(-5)}`:
+            <input id={element._id+"day"} onChange={()=>document.getElementById(element._id).disabled=false} type="datetime-local" style={{fontSize:'17px'}}/>
           }</div>
           </Col>
             </Row>

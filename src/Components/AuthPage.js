@@ -78,8 +78,7 @@ return (
             <h3>Час и дата за поръчката:</h3>
             <h4>
               <div>
-             <b>Дата:</b>{element.status==="1"?" . . .":element.day.slice(0,10)} 
-             <b>Час:</b>{element.status==="1"?" . . .":element.day.slice(-5)}
+             <b>Дата:</b>{element.status==="1"?" . . .":element.day.slice(0,10)} <b>Час:</b>{element.status==="1"?" . . .":element.day.slice(-5)}
            </div>
             </h4>
             </li>          
