@@ -7,14 +7,19 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Col,Row } from "react-bootstrap";
 import NavTop from "./NavTop";
 import NavLeft from "./NavLeft";
+const jsSHA = require("jssha");
 
 function Login() {
 
     const history = useNavigate();
     const [account, setAccount] = useState("");
-    const [password, setPassword] = useState("");
+    var [password, setPassword] = useState("");
     const [validated, setValidated] = useState(false);
-
+    const hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+    hashObj.update(password);
+    const hash = hashObj.getHash("HEX");
+    password = hash;
+   
     async function handleSubmit(e) {
         const form = e.currentTarget;
         if (form.checkValidity() === false) {

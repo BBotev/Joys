@@ -7,12 +7,13 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import NavTop from './NavTop';
 import NavLeft from './NavLeft';
 import { Row, Col } from 'react-bootstrap';
+const jsSHA = require("jssha");
 
 function Signup() {
 
   const history = useNavigate();
   const [account, setAccount] = useState("");
-  const [password, setPassword] = useState("");
+  var [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [secondName, setSecondName] = useState("");
@@ -20,6 +21,11 @@ function Signup() {
   const [gender,setGender] = useState("");
   const [validated, setValidated] = useState(false);
   const admin = false;
+  const hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+  hashObj.update(password);
+  const hash = hashObj.getHash("HEX");
+  password = hash;
+
 
   async function handleSubmit(e) {
     const form = e.currentTarget;

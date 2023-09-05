@@ -94,7 +94,7 @@ function Admin(){
             <Col lg={10} md={10} xs={10}>
             <div>{
             element.day?`Дата: ${element.day.slice(0,10)} Час:${element.day.slice(-5)}`:
-            <input id={element._id+"day"} onChange={()=>document.getElementById(element._id).disabled=false} type="datetime-local" style={{fontSize:'17px'}}/>
+            <input id={element._id+"day"} onChange={(e)=>e.target.value.length?document.getElementById(element._id).disabled=false:document.getElementById(element._id).disabled=true} type="datetime-local" style={{fontSize:'17px'}} required/>
           }</div>
           </Col>
             </Row>
