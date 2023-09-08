@@ -12,9 +12,9 @@ function Admin(){
     const name = localStorage.getItem('name');
     const [day,setDay]=useState(new Date().toJSON().slice(0,10));
 
-    function reloadOrders(){
+    async function reloadOrders(){
       try { 
-        axios.post("https://joys-backend.netlify.app/api/admin",{date:day})
+        await axios.post("https://joys-backend.netlify.app/api/admin",{date:day})
         .then(res=>{
         setAllOrders(res.data);
         setLoading(false);    
