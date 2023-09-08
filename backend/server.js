@@ -70,8 +70,7 @@ app.post("/orders",async(req,res)=>{
         User_id:id,
         name:check.firstName,
         status:1,
-        date: date.getFullYear()+'-'+("0"+(date.getMonth()+1)).slice(-2)+'-'+
-        ("0"+(date.getDate())).slice(-2)+'-'+date.getHours()+':'+("0"+(date.getMinutes())).slice(-2),
+        date: date.toLocaleString('en-CA', { timeZone: 'Europe/Sofia', hour12: false}).replace(/,/g, ''),
         email:check.email,
         phone:check.phone,
         products:orderText,
@@ -105,11 +104,19 @@ const currentUser = req.body
 
 })
 
-app.get("/admin",async (req,res)=>{
-    const allOrders = await joysOrders.find();
+app.post("/admin",async (req,res)=>{
+    const day = req.body;
+    const tomorrow = new Date(day.date);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const stringTomorrow = tomorrow.toISOString().slice(0,10);
+    
     try {      
-        if(allOrders){    
-         res.json(allOrders)        
+        if(day.date){  
+            const sortOrders = await joysOrders.find({ date: { $gt:day.date, $lt:stringTomorrow } });  
+         res.json(sortOrders)        
+    }else{
+        const allOrders =  await joysOrders.find();
+        res.json(allOrders)
     }
  } catch (error) {
   res.json("notexist")

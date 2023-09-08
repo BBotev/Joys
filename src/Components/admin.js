@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import NavTop from "./NavTop";
 import NavLeft from "./NavLeft";
 import { Row, Col } from "react-bootstrap";
@@ -8,20 +8,27 @@ import Accordion from 'react-bootstrap/Accordion';
 function Admin(){
 
     const[allOrders,setAllOrders]= useState([]);
-    const[oneTime,setOneTime]=useState(true);   
+    const[loading,setLoading]=useState(true);   
     const name = localStorage.getItem('name');
-  
-    try {
-        if(oneTime){
-          axios.get("https://joys-backend.netlify.app/api/admin")
-          .then(res=>{
-          setAllOrders(res.data);
-          setOneTime(false);
-          })
-          }}
-        catch (error) {
-          console.log(error)
+    const [day,setDay]=useState(new Date().toJSON().slice(0,10));
+
+    function reloadOrders(){
+      try { 
+        axios.post("https://joys-backend.netlify.app/api/admin",{date:day})
+        .then(res=>{
+        setAllOrders(res.data);
+        setLoading(false);    
+        })
         }
+      catch (error) {
+        console.log(error)
+      }
+    }
+
+    useEffect(()=>{
+      reloadOrders();
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[day])
 
        async function updateOrder(text){
           
@@ -32,7 +39,7 @@ function Admin(){
            await axios.put("https://joys-backend.netlify.app/api/updateorder",{
               selectValue,orderId,day
             })
-            .then(()=>{window.location.reload()})
+            .then(()=>{reloadOrders()})
           } catch (error) {
             console.log(error)
           }     
@@ -46,12 +53,14 @@ function Admin(){
             const selectedOrder = text;
             try {
              await axios.post("https://joys-backend.netlify.app/api/delete",{selectedOrder})
-             .then(()=>{window.location.reload()})
+             .then(()=>{reloadOrders()})
             } catch (error) {
               console.log(error)
             }
           }
         }
+
+        const minDate = new Date().toJSON().slice(0,10);
 
     return(
         
@@ -72,7 +81,14 @@ function Admin(){
   
         <Col lg={10} xs={12} style={{ marginTop: '1%' }}>    
         {
-        !oneTime?<div><h1 style={{textAlign:'center'}}>{allOrders.length>0?'Направените поръчки са:':'Все още няма направени поръчки'}</h1>   
+        !loading?<div>
+         
+          <div style={{textAlign:'center'}} id="text">        
+        <span style={{fontSize:'30px'}}>{allOrders.length>0?'Поръчки от дата: ':'Няма направени поръчки от '}</span>        
+        <input type="date" defaultValue={day} id="inputDate" onChange={(e)=>setDay(e.target.value)} style={{fontSize:'20px'}}></input>
+        <button style={{marginLeft:'10px',borderRadius:'5px'}} onClick={()=>{setDay(null);document.getElementById("inputDate").value=null}}>Виж всички</button>    
+        </div> 
+       
         <ul style={{ fontSize: '20px',listStyle:'none',marginTop:'20px',marginRight:'20px'}}>
          <Row>
           {allOrders.map((element)=>
@@ -94,7 +110,7 @@ function Admin(){
             <Col lg={10} md={10} xs={10}>
             <div>{
             element.day?`Дата: ${element.day.slice(0,10)} Час:${element.day.slice(-5)}`:
-            <input id={element._id+"day"} onChange={(e)=>e.target.value.length?document.getElementById(element._id).disabled=false:document.getElementById(element._id).disabled=true} type="datetime-local" style={{fontSize:'17px'}}/>
+            <input min={minDate+"T00:00:00"} id={element._id+"day"} onChange={(e)=>e.target.value.length?document.getElementById(element._id).disabled=false:document.getElementById(element._id).disabled=true} type="datetime-local" style={{fontSize:'17px'}}/>
           }</div>
           </Col>
             </Row>
